@@ -181,10 +181,6 @@ svg {
   }
 }
 
-/* ====================== */
-/* THE COLLECTION SECTION */
-/* ====================== */
-
 .collection {
   background-color: #EEEEEE; /* nền sáng nhã nhặn */
   text-align: left;
@@ -198,7 +194,8 @@ svg {
   font-weight: 500;
   color: #000009;
   margin-left: 50px;
-  margin-top: -20px;
+  margin-top: -50px;
+  margin-bottom: 50px;
 }
 
 /* Bố cục 4 ô cố định 300x600 */
@@ -215,12 +212,8 @@ svg {
   height: 500px;
   border-radius: 30px;
   padding: 60px 20px;
-  color: #fff;
   position: relative; /* để định vị tự do chữ bên trong */
   display: block;     /* trở về bố cục khối bình thường */
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeUp 1s ease-out forwards;
 }
 
 .season h3 {
@@ -245,17 +238,13 @@ svg {
 }
 
 .season a {
+  font-family: "Baloo 2", sans-serif;
   position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 18px;
+  bottom: 30px;
+  left: 50px;
+  font-size: 25px;
   text-decoration: underline;
-  color: #fff;
-}
-
-.season a:hover {
-  opacity: 0.8;
+  color: #E3E7D3;
 }
 
 /* Màu từng mùa */
@@ -264,17 +253,7 @@ svg {
 .summer { background-color: #E8B200; }
 .spring { background-color: #1CA317; }
 
-/* Animation xuất hiện */
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 
 /* Responsive: khi màn hình nhỏ thì giữ 1 cột */
 @media (max-width: 768px) {
