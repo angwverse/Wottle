@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Baloo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Wottle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="hero finisher-header">
+    <div class="content">
+      <p class="subtext">Refuel your body - Refresh your mind</p>
+      <h1>FUEL YOUR FLOW</h1>
+
+      <div class="buttons">
+        <button class="blob-btn">
+          Explore Now
+          <span class="blob-btn__inner">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </button>
+      </div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0 
+                      0 1 0 0 0 
+                      0 0 1 0 0 
+                      0 0 0 21 -7"
+              result="goo"
+            ></feColorMatrix>
+            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+
+    </div>
+  </section>
+
+  <section class="collection">
+    <h2 class="collection-title">THE COLLECTION</h2>
+    <div class="seasons">
+      <div class="season winter">
+        <h3>Winter</h3>
+        <p>Find calm in every flow.</p>
+        <a> From 24.34$</a>
+      </div>
+
+      <div class="season autumn">
+        <h3>Autumn</h3>
+        <p>Embrace the warmth within.</p>
+        <a> From 24.34$</a>
+      </div>
+
+      <div class="season summer">
+        <h3>Summer</h3>
+        <p>Stay bright and full of energy.</p>
+        <a> From 24.34$</a>
+      </div>
+
+      <div class="season spring">
+        <h3>Spring</h3>
+        <p>Fresh beginnings start here.</p>
+        <a> From 24.34$</a>
+      </div>
+    </div>
+  </section>
+
+<script src="finisher-header.es5.min.js" type="text/javascript"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
