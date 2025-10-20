@@ -56,6 +56,7 @@ h1 {
   opacity: 0; /* Bắt đầu ẩn */
 }
 
+
 /* Nút blob chính */
 .blob-btn {
   z-index: 1;                    /* Nằm trên lớp hiệu ứng mờ hoặc nền */
@@ -196,6 +197,14 @@ svg {
   margin-left: 50px;
   margin-top: -50px;
   margin-bottom: 50px;
+  opacity: 0; 
+  transform: translateY(50px); /* ẩn và trượt xuống */
+  transition: all 0.8s ease-out;
+}
+
+.collection-title.active {
+  opacity: 1;
+  transform: translateY(0); /* bật hiệu ứng mượt */
 }
 
 /* Bố cục 4 ô cố định 300x600 */
@@ -274,4 +283,15 @@ svg {
   .season p {
     font-size: 18px;
   }
+}
+
+/* Hiệu ứng hover phóng to season */
+.season {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.season:hover {
+  transform: scale(1.08); /* phóng to nhẹ */
+  z-index: 2;
 }
