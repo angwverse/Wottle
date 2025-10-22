@@ -223,14 +223,29 @@ svg {
   padding: 60px 20px;
   position: relative;
   display: block;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-.season:hover {
-  transform: scale(1.08);
-  z-index: 2;
+/* hiệu ứng xuất hiện ban đầu */
+.season {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease;
 }
+
+/* khi hiện ra */
+.season.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.3s ease; /* tốc độ transform khi hover ra vào */
+}
+
+/* hover */
+.season.show:hover {
+  transform: scale(1.08);
+  transition-delay: 0s !important;
+}
+
 
 /* Text trong mỗi season */
 .season h3 {
@@ -284,3 +299,17 @@ svg {
   .season h3 { font-size: 32px; }
   .season p { font-size: 18px; }
 }
+
+.collection-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+
+.collection-title.active span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
