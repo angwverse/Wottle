@@ -1,67 +1,80 @@
-/* ----------------------------- */
-/* RESET CƠ BẢN + FONT MẶC ĐỊNH */
-/* ----------------------------- */
+/* ===========================================================
+   🌊 WOTTLE WEBSITE - STYLE.CSS (CLEAN + COMMENTED)
+   Tác giả: Quang Huy
+   Phiên bản: Clean & Explained by GPT
+   =========================================================== */
+
+
+/* -----------------------------------------------------------
+   RESET CƠ BẢN + FONT MẶC ĐỊNH
+   ----------------------------------------------------------- */
 *, *::before, *::after {
-  margin: 0;                       /* Xóa margin mặc định */
+  margin: 0;                       /* Xóa margin mặc định của trình duyệt */
   padding: 0;                      /* Xóa padding mặc định */
-  box-sizing: border-box;           /* Gộp padding + border vào kích thước phần tử */
-  font-family: "Baloo", sans-serif; /* Font mặc định toàn trang */
+  box-sizing: border-box;           /* Tính cả border + padding vào width/height */
+  font-family: "Baloo", sans-serif; /* Font chữ mặc định toàn trang */
 }
 
-/* ----------------------------- */
-/* HERO SECTION (TOÀN MÀN HÌNH) */
-/* ----------------------------- */
+
+/* -----------------------------------------------------------
+   HERO SECTION (PHẦN MỞ ĐẦU TOÀN MÀN HÌNH)
+   ----------------------------------------------------------- */
 .hero.finisher-header {
   position: relative;
-  height: 100vh;
+  height: 100vh;                   /* Full chiều cao màn hình */
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;             /* Canh giữa theo chiều dọc */
+  justify-content: center;         /* Canh giữa theo chiều ngang */
   text-align: center;
   color: #fff;
   overflow: hidden;
   z-index: 0;
 }
 
-/* Nội dung trong hero */
+/* Nội dung trong hero (giữ nút, text, v.v.) */
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 2;                      /* Đè lên hiệu ứng nền FinisherHeader */
   max-width: 1024px;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Subtext */
+/* Dòng phụ trên cùng (subtext) */
 .subtext {
   font-family: "Baloo 2", sans-serif;
   font-size: 40px;
   color: #E3E7D3;
   margin-bottom: -20px;
+  opacity: 0;                      /* Ẩn trước khi animate */
   animation: fadeUp 1s ease-out 0.2s forwards;
-  opacity: 0;
 }
 
-/* Heading chính */
+/* Tiêu đề chính (H1) */
 h1 {
   font-size: 100px;
   font-weight: 500;
   color: #E3E7D3;
-  animation: fadeUp 1.2s ease-out 0.6s forwards;
   opacity: 0;
+  animation: fadeUp 1.2s ease-out 0.3s forwards;
 }
 
-/* Container chứa nút */
+/* Container chứa nút "Explore Now" */
 .buttons {
   text-align: center;
   border-radius: 30px;
-  animation: fadeUp 1.4s ease-out 1s forwards;
   opacity: 0;
+  animation: fadeUp 1.4s ease-out 0.4s forwards;
 }
 
-/* ----------------------------- */
-/* NÚT HIỆU ỨNG BLOB */
-/* ----------------------------- */
+
+/* -----------------------------------------------------------
+   NÚT HIỆU ỨNG BLOB (NÚT GOOEY)
+   ----------------------------------------------------------- */
 .blob-btn {
   position: relative;
   z-index: 1;
@@ -74,11 +87,11 @@ h1 {
   border: none;
   outline: none;
   cursor: pointer;
-  transition: color 0.5s;
   border-radius: 30px;
+  transition: color 0.5s;
 }
 
-/* Viền nút */
+/* Viền nút chính */
 .blob-btn::before {
   content: "";
   position: absolute;
@@ -89,31 +102,29 @@ h1 {
   z-index: 1;
 }
 
-/* Layer nền di chuyển */
+/* Layer nền di chuyển bên trong */
 .blob-btn::after {
   content: "";
   position: absolute;
   top: 3px; left: 3px;
   width: 100%; height: 100%;
   border-radius: 30px;
-  transition: all 0.3s 0.2s;
   z-index: -2;
+  transition: all 0.3s 0.2s;
 }
 
-/* Hover đổi màu */
+/* Khi hover, chữ đổi màu */
 .blob-btn:hover {
   color: #0038BC;
 }
 
-/* Hover nền khớp lại */
+/* Hover nền di chuyển khớp lại */
 .blob-btn:hover::after {
   top: 0; left: 0;
   transition: all 0.3s;
 }
 
-/* ----------------------------- */
-/* HIỆU ỨNG BLOB NỔI BÊN TRONG */
-/* ----------------------------- */
+/* Bên trong nút: hiệu ứng gooey */
 .blob-btn__inner {
   position: absolute;
   top: 0; left: 0;
@@ -123,13 +134,15 @@ h1 {
   z-index: -1;
 }
 
+/* Nhóm blob */
 .blob-btn__blobs {
   height: 100%;
   display: block;
   position: relative;
-  filter: url('#goo'); /* hiệu ứng gooey */
+  filter: url('#goo'); /* Dùng SVG filter gooey */
 }
 
+/* Mỗi blob riêng lẻ */
 .blob-btn__blob {
   position: absolute;
   top: 2px;
@@ -141,14 +154,14 @@ h1 {
   transition: transform 0.45s;
 }
 
-/* Khi trình duyệt hỗ trợ filter gooey */
+/* Nếu trình duyệt hỗ trợ gooey */
 @supports (filter: url('#goo')) {
   .blob-btn__blob {
     transform: translate3d(0, 150%, 0) scale(1.4);
   }
 }
 
-/* Blob chuyển động nối tiếp */
+/* Blob lần lượt xuất hiện */
 .blob-btn__blob:nth-child(1) { left: 0%;  transition-delay: 0s; }
 .blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
 .blob-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
@@ -158,14 +171,13 @@ h1 {
 .blob-btn:hover .blob-btn__blob {
   transform: translateZ(0) scale(1.7);
 }
-
 @supports (filter: url('#goo')) {
   .blob-btn:hover .blob-btn__blob {
     transform: translateZ(0) scale(1.4);
   }
 }
 
-/* SVG filter */
+/* SVG filter ẩn đi */
 svg {
   position: absolute;
   width: 0;
@@ -173,15 +185,16 @@ svg {
   overflow: hidden;
 }
 
-/* Hiệu ứng xuất hiện chữ */
+/* Animation fade lên */
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(50px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* ----------------------------- */
-/* COLLECTION SECTION */
-/* ----------------------------- */
+
+/* -----------------------------------------------------------
+   COLLECTION SECTION (DANH MỤC MÙA)
+   ----------------------------------------------------------- */
 .collection {
   background-color: #EEEEEE;
   text-align: left;
@@ -190,6 +203,7 @@ svg {
   width: 100%;
 }
 
+/* Tiêu đề chính của Collection */
 .collection-title {
   font-size: 60px;
   font-weight: 500;
@@ -197,61 +211,69 @@ svg {
   margin: -50px 0 50px 50px;
   opacity: 0;
   transform: translateY(50px);
-  transition: all 0.8s ease-out;
+  transition: all 0.5s ease-out;
 }
 
+/* Khi cuộn đến => hiện ra */
 .collection-title.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ----------------------------- */
-/* BỐ CỤC CÁC MÙA */
-/* ----------------------------- */
+/* Mỗi ký tự được JS tách thành span riêng */
+.collection-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+.collection-title.active span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* -----------------------------------------------------------
+   CÁC CARD "SEASONS" (MÙA)
+   ----------------------------------------------------------- */
 .seasons {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  /* cho phép xuống hàng */
   gap: 25px;
 }
 
+/* Mỗi card mùa */
 .season {
   width: 300px;
   height: 500px;
   border-radius: 30px;
   padding: 60px 20px;
   position: relative;
-  display: block;
   cursor: pointer;
-}
-
-/* hiệu ứng xuất hiện ban đầu */
-.season {
-  opacity: 0;
+  opacity: 0;                       /* Ẩn trước */
   transform: translateY(50px);
   transition: opacity 0.8s ease;
 }
 
-/* khi hiện ra */
+/* Khi card xuất hiện trên màn hình */
 .season.show {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.8s ease, transform 0.3s ease; /* tốc độ transform khi hover ra vào */
+  transition: opacity 0.8s ease, transform 0.5s ease;
 }
 
-/* hover */
+/* Hover phóng to nhẹ */
 .season.show:hover {
   transform: scale(1.08);
   transition-delay: 0s !important;
 }
 
-
-/* Text trong mỗi season */
+/* Nội dung trong card */
 .season h3 {
   position: absolute;
   top: 30px; left: 50px;
-  text-align: left;
   font-size: 40px;
   font-weight: 500;
   color: #E3E7D3;
@@ -276,40 +298,253 @@ svg {
   color: #E3E7D3;
 }
 
-/* ----------------------------- */
-/* MÀU CHO TỪNG MÙA */
-/* ----------------------------- */
+/* Màu nền cho từng mùa */
 .winter { background-color: #0038BC; }
 .autumn { background-color: #D64500; }
 .summer { background-color: #E8B200; }
 .spring { background-color: #1CA317; }
 
-/* ----------------------------- */
-/* RESPONSIVE */
-/* ----------------------------- */
-@media (max-width: 768px) {
-  .collection-title {
-    font-size: 40px;
-    margin-bottom: 40px;
-  }
-  .season {
-    width: 280px;
-    height: 500px;
-  }
-  .season h3 { font-size: 32px; }
-  .season p { font-size: 18px; }
+
+/* -----------------------------------------------------------
+   PHẦN "WOTTLE SECTION" (HÌNH ẢNH + TEXT)
+   ----------------------------------------------------------- */
+.wottle-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  height: 100vh;
+  width: 100%;
+  background-color: #eeeeee;
+  padding: 0 60px;
 }
 
-.collection-title span {
+/* Ảnh bên trái */
+.image-container img {
+  width: 400px;
+  height: 600px;
+  border-radius: 30px;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+/* Khi thêm class show (bằng JS) => hiện ảnh */
+.image-container.show img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tiêu đề phụ trong text-container */
+.text-container h4 {
+  font-size: 60px;
+  font-weight: 500;
+  color: #000009;
+  margin-bottom: 10px;
+  max-width: 700px;
+  opacity: 0;
+}
+
+/* Từng ký tự tách ra span để animate */
+.text-container h4 span {
   display: inline-block;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.5s ease;
 }
 
-.collection-title.active span {
+/* Khi h4.active (JS thêm vào) => từng ký tự hiện dần */
+.text-container h4.active span {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Đoạn mô tả */
+.text-container p {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 25px;
+  line-height: normal;
+  letter-spacing: -0.05em;
+  color: #000009;
+  margin-bottom: 30px;
+  max-width: 620px;
+  text-align: justify;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
 
+/* Nút dưới đoạn text */
+.buttons-1 {
+  display: flex;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+/* Khi cuộn đến => cả 3 phần hiện cùng lúc */
+.text-container.show h4,
+.text-container.show p,
+.text-container.show .buttons-1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nút đen đơn giản */
+.btn-dark {
+  background-color: #000009;
+  color: #E3E7D3;
+  font-weight: 500;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 220px;
+  height: 60px;
+  font-size: 20px;
+}
+
+
+/* -----------------------------------------------------------
+   NÚT BLOB VÀNG (BÊN PHẢI - "FEATURES")
+   ----------------------------------------------------------- */
+.blob-btn-1 {
+  position: relative;
+  z-index: 1;
+  padding: 12px 60px;
+  text-transform: uppercase;
+  color: #EF8F00;
+  font-size: 20px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: color 0.5s;
+}
+
+/* Viền */
+.blob-btn-1::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 3px solid #EF8F00;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+/* Layer nền di chuyển */
+.blob-btn-1::after {
+  content: "";
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 100%; height: 100%;
+  border-radius: 20px;
+  z-index: -2;
+  transition: all 0.3s 0.2s;
+}
+
+/* Hover đổi màu chữ */
+.blob-btn-1:hover {
+  color: #E3E7D3;
+}
+
+/* Hover nền khớp */
+.blob-btn-1:hover::after {
+  top: 0; left: 0;
+  transition: all 0.3s;
+}
+
+/* Bên trong nút blob vàng */
+.blob-btn__inner_1 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+/* Nhóm blob */
+.blob-btn__blobs_1 {
+  height: 100%;
+  display: block;
+  position: relative;
+  filter: url('#goo');
+}
+
+/* Mỗi blob */
+.blob-btn__blob_1 {
+  position: absolute;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background: #EF8F00;
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transition: transform 0.45s;
+}
+
+/* Khi trình duyệt hỗ trợ gooey */
+@supports (filter: url('#goo')) {
+  .blob-btn__blob_1 {
+    transform: translate3d(0, 150%, 0) scale(1.4);
+  }
+}
+
+/* Blob lần lượt di chuyển */
+.blob-btn__blob_1:nth-child(1) { left: 0%;  transition-delay: 0s; }
+.blob-btn__blob_1:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.blob-btn__blob_1:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.blob-btn__blob_1:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+/* Hover blob nổi lên */
+.blob-btn-1:hover .blob-btn__blob_1 {
+  transform: translateZ(0) scale(1.7);
+}
+@supports (filter: url('#goo')) {
+  .blob-btn-1:hover .blob-btn__blob_1 {
+    transform: translateZ(0) scale(1.4);
+  }
+}
+
+
+/* -----------------------------------------------------------
+   RESPONSIVE (TỰ CO DÃN MÀN HÌNH)
+   ----------------------------------------------------------- */
+
+/* Tablet, mobile */
+@media (max-width: 900px) {
+  .wottle-section {
+    flex-direction: column; /* Xếp dọc thay vì ngang */
+    text-align: center;
+  }
+
+  .image-container img {
+    width: 90%;
+  }
+
+  .text-container {
+    max-width: 90%;
+  }
+}
+
+/* Collection section trên mobile */
+@media (max-width: 768px) {
+  .collection-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  .season {
+    width: 280px;
+    height: 500px;
+  }
+
+  .season h3 { font-size: 32px; }
+  .season p { font-size: 18px; }
+}
