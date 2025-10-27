@@ -135,3 +135,107 @@ document.addEventListener("DOMContentLoaded", () => {
 
   imgObserver.observe(imgBox);
 });
+
+/* ================================
+   HIỆU ỨNG XUẤT HIỆN SPLIT SECTIONS
+   ================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const splits = document.querySelectorAll(".split-item");
+
+  const splitObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        splitObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  splits.forEach(s => splitObserver.observe(s));
+});
+
+/* HIỆU ỨNG TỪNG KÝ TỰ H2 TRONG SECTION 2 */
+document.addEventListener("DOMContentLoaded", () => {
+  const h2 = document.querySelector(".div3 h2");
+  const text = h2.textContent;
+  h2.textContent = "";
+
+  // Tách từng ký tự thành span
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement("span");
+    span.innerHTML = text[i] === " " ? "&nbsp;" : text[i];
+    span.style.transitionDelay = `${i * 0.05}s`;
+    h2.appendChild(span);
+  }
+
+  // Kích hoạt khi kéo đến
+  const h2Observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        h2.classList.add("active");
+        h2Observer.unobserve(h2);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  h2Observer.observe(h2);
+});
+
+/* HIỆU ỨNG TỪNG KÝ TỰ CHO H1 TRONG SECTION 2 */
+document.addEventListener("DOMContentLoaded", () => {
+  const h1 = document.querySelector(".div2 h1");
+  const text = h1.textContent;
+  h1.textContent = "";
+
+  // Tách từng ký tự thành span
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement("span");
+    span.innerHTML = text[i] === " " ? "&nbsp;" : text[i];
+    span.style.transitionDelay = `${i * 0.05}s`;
+    h1.appendChild(span);
+  }
+
+  // Quan sát khi xuất hiện trên màn hình
+  const h1Observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        h1.classList.add("active");
+        h1Observer.unobserve(h1);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  h1Observer.observe(h1);
+});
+
+/* HIỆU ỨNG HIỆN LÊN CHO TEXT Ở DIV2 & DIV3 */
+document.addEventListener("DOMContentLoaded", () => {
+  const texts = document.querySelectorAll(".text-box");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  texts.forEach(text => observer.observe(text));
+});
+
+/* Hiệu ứng hình ảnh div1 và div4 */
+document.addEventListener("DOMContentLoaded", () => {
+  const imgs = document.querySelectorAll(".fade-img");
+
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        imgObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  imgs.forEach(img => imgObserver.observe(img));
+});
