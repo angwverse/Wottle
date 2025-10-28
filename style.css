@@ -518,6 +518,7 @@ svg {
   width: 100%;                       /* Chiếm toàn bộ chiều ngang */
   background: #EEEEEE;               /* Nền xám nhạt */
   padding: 0;                        /* Không có khoảng cách trong */
+  padding-top: 100px;
 }
 
 .parent {
@@ -656,8 +657,8 @@ svg {
 }
 
 /* div1: trượt từ trên xuống */
-.img-up {
-  transform: translateY(-80px);      /* Dịch ảnh lên trên 80px */
+.img-left {
+  transform: translateX(-80px);      /* Dịch ảnh lên trên 80px */
 }
 
 /* div4: trượt từ dưới lên */
