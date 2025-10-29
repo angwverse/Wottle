@@ -259,3 +259,196 @@ document.addEventListener("DOMContentLoaded", () => {
 
   imgs.forEach(img => imgObserver.observe(img));
 });
+
+/* =======================================================
+   HIỆU ỨNG TỪNG KÝ TỰ CHO "Raising Sustainability Standards"
+   (Giữ thẻ <br> để ngắt dòng đúng)
+   ======================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const title = document.querySelector(".info-box h2");
+  const html = title.innerHTML;
+  title.innerHTML = "";
+
+  // Tách từng phần, giữ nguyên <br>
+  const parts = html.split(/(<br\s*\/?>)/g);
+
+  parts.forEach(part => {
+    if (part.match(/<br\s*\/?>/)) {
+      // Nếu là thẻ <br>, thêm trực tiếp mà không tạo span
+      title.appendChild(document.createElement("br"));
+    } else {
+      // Nếu là chữ, tách từng ký tự
+      for (let i = 0; i < part.length; i++) {
+        const span = document.createElement("span");
+        span.textContent = part[i];
+        span.style.transitionDelay = `${(title.querySelectorAll("span").length) * 0.05}s`;
+        title.appendChild(span);
+      }
+    }
+  });
+
+  // Khi tiêu đề xuất hiện
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        title.classList.add("active");
+        titleObserver.unobserve(title);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  titleObserver.observe(title);
+});
+
+
+
+/* =======================================================
+   HIỆU ỨNG FADE-UP CHO ĐOẠN MÔ TẢ VÀ NÚT TRONG INFO BOX
+   ======================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const infoElements = document.querySelectorAll(".info-box p, .info-box .blob-btn-2");
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  infoElements.forEach(el => fadeObserver.observe(el));
+});
+
+/* =======================================================
+   HIỆU ỨNG XUẤT HIỆN TỪ DƯỚI LÊN CHO INFO-BOX (SECTION 3)
+   ======================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const infoBox = document.querySelector(".info-box");
+
+  if (!infoBox) return;
+
+  const infoBoxObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        infoBox.classList.add("show");  // Thêm class để kích hoạt hiệu ứng
+        infoBoxObserver.unobserve(infoBox); // Ngừng theo dõi sau khi chạy
+      }
+    });
+  }, { threshold: 0.3 });
+
+  infoBoxObserver.observe(infoBox);
+});
+
+/* =======================================================
+   HIỆU ỨNG TRƯỢT TỪ TRÁI SANG CHO BACKGROUND SECTION 3
+   ======================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const section3 = document.querySelector(".section3");
+
+  const bgSlideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section3.classList.add("show-bg");   // Thêm class để chạy hiệu ứng
+        bgSlideObserver.unobserve(section3); // Chỉ chạy 1 lần
+      }
+    });
+  }, { threshold: 0.3 });
+
+  bgSlideObserver.observe(section3);
+});
+
+    const carousel = document.querySelector('.carousel');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let autoScroll;
+
+    function startAutoScroll() {
+        autoScroll = setInterval(() => {
+            carousel.scrollLeft += 0.5; // tốc độ auto chạy
+            const scrollWidth = carousel.scrollWidth / 2; // chiều dài 1 vòng
+            if (carousel.scrollLeft >= scrollWidth) {
+                // khi chạy hết nửa đầu, nhảy về 0 mà ko giật
+                carousel.scrollLeft = 0;
+            }
+        }, 10);
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScroll);
+    }
+
+    /*
+    // --- Kéo chuột ---
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        stopAutoScroll();
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        startAutoScroll();
+    });
+
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        startAutoScroll();
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        carousel.scrollLeft = scrollLeft - walk;
+    });
+    */
+
+    startAutoScroll();
+
+  /* =======================================================
+   HIỆU ỨNG TỪNG KÝ TỰ CHO .join-circle h2
+   - Giữ nguyên <br> giữa 2 dòng
+   ======================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const join = document.querySelector(".join-circle h2");
+  if (!join) return;
+
+  const html = join.innerHTML;         // có thể chứa <br>
+  join.innerHTML = "";
+
+  // split giữ <br>
+  const parts = html.split(/(<br\s*\/?>)/g);
+  let charIndex = 0;
+
+  parts.forEach(part => {
+    if (part.match(/<br\s*\/?>/)) {
+      // thêm break line
+      join.appendChild(document.createElement("br"));
+    } else {
+      // tách từng ký tự
+      for (let i = 0; i < part.length; i++) {
+        const span = document.createElement("span");
+        span.innerHTML = part[i] === " " ? "&nbsp;" : part[i];
+        // delay tăng dần để tạo hiệu ứng nối tiếp
+        span.style.transitionDelay = `${charIndex * 0.04}s`;
+        join.appendChild(span);
+        charIndex++;
+      }
+    }
+  });
+
+  const joinObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        join.classList.add("active");
+        joinObserver.unobserve(join);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  joinObserver.observe(join);
+});

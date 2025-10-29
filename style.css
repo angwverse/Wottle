@@ -663,7 +663,7 @@ svg {
 
 /* div4: trượt từ dưới lên */
 .img-down {
-  transform: translateY(80px);       /* Dịch ảnh xuống 80px */
+  transform: translateX(-80px);       /* Dịch ảnh xuống 80px */
 }
 
 /* Khi hiện ra */
@@ -774,4 +774,326 @@ svg {
   .season a {
     font-size: 20px;
   }
+}
+
+/* Hộp thông tin trong section3 */
+.info-box {
+  position: absolute;
+  right: 120px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 450px;
+  height: 600px;
+  background: #0038bc;
+  border-radius: 30px;
+  padding: 60px 50px;
+  color: #e3e7d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: all 1s ease-out;
+}
+
+.info-box h2 {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 25px;
+  font-weight: 500;
+  color: #E3E7D3;
+}
+
+.info-box p {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.05em;
+  color: #E3E7D3;
+  margin-bottom: 35px;
+  text-align: justify;
+  max-width: 350px;
+}
+
+/* -----------------------------------------------------------
+    NÚT BLOB XANH (LEGAL & HELP)
+   ----------------------------------------------------------- */
+.blob-btn-2 {
+  position: relative;               /* Để các phần tử pseudo bám vào */
+  z-index: 1;                       /* Đặt trên cùng */
+  padding: 12px 50px;               /* Kích thước nút */
+  text-transform: uppercase;        /* Viết hoa chữ */
+  color: #E3E7D3;                   /* Màu vàng cam */
+  font-size: 20px;                  /* Cỡ chữ */
+  font-weight: 500;                 /* Độ đậm vừa */
+  background: transparent;          /* Không nền */
+  border: none;                     /* Không viền */
+  outline: none;                    /* Không viền focus */
+  cursor: pointer;                  /* Hiển thị bàn tay khi hover */
+  border-radius: 20px;              /* Bo tròn */
+  transition: color 0.5s;           /* Hiệu ứng đổi màu chữ */
+}
+
+/* Viền nút vàng */
+.blob-btn-2::before {
+  content: "";                      /* Pseudo element tạo viền */
+  position: absolute;               /* Đặt tuyệt đối */
+  top: 0; left: 0;                  /* Canh góc trên trái */
+  width: 100%; height: 100%;        /* Bao quanh nút */
+  border: 3px solid #E3E7D3;        /* Viền vàng */
+  border-radius: 20px;              /* Bo tròn góc */
+  z-index: 1;                       /* Đặt trên layer nền */
+}
+
+/* Layer nền di chuyển bên trong */
+.blob-btn-2::after {
+  content: "";                      /* Pseudo cho hiệu ứng di chuyển nền */
+  position: absolute;
+  top: 2px; left: 2px;              /* Dịch nhẹ để tạo chiều sâu */
+  width: 100%; height: 100%;
+  border-radius: 20px;              /* Bo tròn */
+  z-index: -2;                      /* Đặt dưới cùng */
+  transition: all 0.3s 0.2s;        /* Hiệu ứng mượt chậm hơn 0.2s */
+}
+
+/* Hover đổi màu chữ */
+.blob-btn-2:hover {
+  color: #0038BC;                   /* Đổi chữ sang trắng ngà */
+}
+
+/* Hover nền khớp lại (tạo hiệu ứng chuyển động) */
+.blob-btn-2:hover::after {
+  top: 0; left: 0;                  /* Nền khớp vị trí */
+  transition: all 0.3s;
+}
+
+/* Bên trong nút blob vàng */
+.blob-btn__inner_2 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;                 /* Ẩn phần blob thừa */
+  border-radius: 20px;              /* Bo tròn */
+  z-index: -1;                      /* Đặt dưới layer chữ */
+}
+
+/* Nhóm blob */
+.blob-btn__blobs_2 {
+  height: 100%;                     /* Chiều cao đầy đủ */
+  display: block;
+  position: relative;
+  filter: url('#goo');              /* Áp dụng filter gooey */
+}
+
+/* Mỗi blob riêng lẻ */
+.blob-btn__blob_2 {
+  position: absolute;
+  top: 0;
+  width: 25%;                       /* Mỗi blob chiếm 1/4 nút */
+  height: 100%;
+  background: #E3E7D3;              /* Màu blob vàng */
+  border-radius: 100%;              /* Hình tròn */
+  transform: translate3d(0, 150%, 0) scale(1.7); /* Ẩn ban đầu */
+  transition: transform 0.45s;      /* Mượt khi di chuyển */
+}
+
+/* Khi trình duyệt hỗ trợ gooey */
+@supports (filter: url('#goo')) {
+  .blob-btn__blob_2 {
+    transform: translate3d(0, 150%, 0) scale(1.4); /* Giảm scale nhẹ */
+  }
+}
+
+/* Blob lần lượt di chuyển (delay dần) */
+.blob-btn__blob_2:nth-child(1) { left: 0%;  transition-delay: 0s; }
+.blob-btn__blob_2:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.blob-btn__blob_2:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.blob-btn__blob_2:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+/* Hover blob nổi lên */
+.blob-btn-2:hover .blob-btn__blob_2 {
+  transform: translateZ(0) scale(1.7);
+}
+
+/* Khi có gooey filter */
+@supports (filter: url('#goo')) {
+  .blob-btn-2:hover .blob-btn__blob_2 {
+    transform: translateZ(0) scale(1.4);
+  }
+}
+
+/* Hiệu ứng từng ký tự cho h2 trong info-box */
+.info-box h2 span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+
+.info-box h2.active span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hiệu ứng fade-up cho mô tả và nút */
+.info-box p,
+.info-box .blob-btn-2 {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.info-box p.show,
+.info-box .blob-btn-2.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hiệu ứng xuất hiện từ dưới lên */
+.info-box.show {
+  opacity: 1;
+  animation: slideUpBox 1s ease-out forwards;
+}
+
+/* Animation riêng: chỉ thêm transform dịch lên,
+   mà vẫn giữ translateY(-50%) nhờ relative offset */
+@keyframes slideUpBox {
+  from {
+    transform: translateY(calc(-50% + 80px));
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* Hiệu ứng trượt từ trên xuống cho background section3 */
+.section3 .full-screen-img img {
+  opacity: 0;
+  transform: translateY(-80px); /* Dịch lên để trượt xuống */
+  transition: all 0.5s ease-out;
+}
+
+/* Khi xuất hiện trên màn hình */
+.section3.show-bg .full-screen-img img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.comment {
+  width: 100%;
+  background: #EEEEEE;  /* nếu cần nền */
+  margin-top: -100px;
+}
+
+.carousel {
+    margin: 100px 0;
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    cursor: grab;
+    padding-right: 1em;
+}
+
+.carousel.active {
+    cursor: grabbing;
+}
+
+.card {
+    width: 500px;
+    height: 500px;
+    background: #EEEEEE;
+    border-radius: 20px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.card .stars {
+    font-size: 25px;
+    color: #EF8F00;   /* màu vàng */
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    color: #000009;
+}
+
+.card p {
+    font-size: 25px;
+    font-family: "Baloo 2", sans-serif;
+    color: #000009;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    margin-top: -20px;
+}
+
+.card .author {
+    font-size: 25px;
+    font-family: "Baloo 2", sans-serif;
+    color: #000009;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+@keyframes spin {
+    from {translate: 0;}
+    to {translate: -100%;}
+}
+
+.join-circle {
+  height: 250px; /* Nửa màn hình */
+  width: 100%;
+  background: linear-gradient(to right, #0038BC, #E3E7D3);
+  display: flex;
+  align-items: center;      /* Canh giữa theo chiều dọc */
+  justify-content: flex-start; /* Canh trái */
+  padding-left: 20px;      /* Đẩy chữ cách trái một đoạn đẹp */
+  margin-top: -100px;
+}
+
+.join-circle h2 {
+  color: #E3E7D3;
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 500;
+  font-family: "Baloo", sans-serif;
+}
+
+/* mỗi ký tự */
+.join-circle h2 span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) scale(1);
+  transition: all 0.45s cubic-bezier(.2,.9,.2,1);
+}
+
+/* khi active => hiển thị từng ký tự theo delay (delay set bằng JS) */
+.join-circle h2.active span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Giữ responsive: nhỏ hơn màn hình thì chữ nhỏ lại */
+@media (max-width: 768px) {
+  .join-circle h2 { font-size: 28px; }
 }
